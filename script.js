@@ -93,16 +93,17 @@ function agregarTurno() {
     let fecha = prompt("Ingrese la fecha del turno, sólo de Lunes a Viernes(formato: DD/MM/AAAA):");
     let hora = prompt("Ingrese la hora del turno (formato hh:mm):");
 
-// Verificar si la fecha y hora del turno son válidas
-    let fechaHoraTurno = new Date(fecha + " " + hora);
-    if (isNaN(fechaHoraTurno.getTime())) {
+    // Verifico si la fecha y hora del turno son válidas
+    let fechaValida = /^\d{2}\/\d{2}\/\d{4}$/;
+    let horaValida = /^\d{2}:\d{2}$/;
+
+    if (!fechaValida.test(fecha) || !horaValida.test(hora)) {
         alert("La fecha u hora del turno ingresados no son válidos.");
-        agregarTurno(); 
+        agregarTurno();
         return;
     }
     arregloTurnos.push(new Turno(contadorId, nombrePaciente, fecha, hora));
     contadorId++;
-
     alert("Turno agendado correctamente.\n" + mostrarTurnos());
 }
 
@@ -127,24 +128,8 @@ function buscarTurno(idTurno) {
     return -1;
 }
 
-function mostrarTurnos() {
-    let listaTurnos = "";
-
-    if (arregloTurnos.length === 0) {
-        listaTurnos = "No hay turnos agendados.";
-    } else {
-        for (let i = 0; i < arregloTurnos.length; i++) {
-            listaTurnos += "\n" + arregloTurnos[i].mostrarInformacion();
-        }
-    }
-
-    return listaTurnos;
-}
-
-
 function mostrarHorarios() {
-    let listaHorarios = ""; // Se declara la variable fuera del bloque if-else
-
+    let listaHorarios = "";
     if (arregloHorarios.length === 0) {
         listaHorarios = "No hay horarios.";
     } else {
@@ -152,8 +137,33 @@ function mostrarHorarios() {
             listaHorarios += "\n" + arregloHorarios[i];
         }
     }
-
     return listaHorarios;
 }
 
+function mostrarTurnos(orden) {
+    let listaTurnos = "";
+    if (arregloTurnos.length === 0) {
+        listaTurnos = "No hay turnos agendados.";
+    } else {
+        arregloTurnos.sort((a, b) => {
+            if (a.fecha > b.fecha) {
+                return 1;
+            } else if (a.fecha < b.fecha) {
+                return -1;
+            } else {
+                if (a.hora > b.hora) {
+                    return 1;
+                } else if (a.hora < b.hora) {
+                    return -1;
+                } else {
+                    return 0;
+                }
+            }
+        });
+    }
 
+    for (let i = 0; i < arregloTurnos.length; i++) {
+        listaTurnos += "\n" + arregloTurnos[i].mostrarInformacion();
+    }
+return listaTurnos;
+}
