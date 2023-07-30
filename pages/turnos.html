@@ -46,23 +46,16 @@
         </nav>
     </header>
     <main class="contenedor-turno">
-        <div class="imgturnos">
-            <section class="banner-turnos">
-                <h1>Turnos e Indicaciones</h1>  
-                <p>Seleccione la fecha del turno. El horario de extracciones es de 7:30 a 9:30 hs. 
-                Recuerde buscar las indicaciones para conocer los requisitos de su estudio.</p>
-            </section>
-            <section class="calendario">
-                <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&bgcolor=%23B39DDB&ctz=America%2FArgentina%2FBuenos_Aires&showPrint=0&showTabs=0&showCalendars=1&showTz=0&src=aGoudmR0NzJAZ21haWwuY29t&src=ZXMuYXIjaG9saWRheUBncm91cC52LmNhbGVuZGFyLmdvb2dsZS5jb20&color=%23039BE5&color=%230B8043" style="border:solid 1px #777" width="200" height="100" frameborder="0" scrolling="no"></iframe>
-            </section>
-            <section class="busqueda-ind">
-                <h1>Indicaciones</h1>
-                <p>Ingrese el nombre del estudio. Tenga en cuenta que si tiene diferentes horarios de ayuno, debe hacer el mas largo.</p>
-                <form class="example-turno" action="">
-                    <input type="text" placeholder="Buscar" name="search">
-                    <button type="submit">Enviar<i class="fa fa-search"></i></button>
-                </form>
+        <h1>Turnos para Atencion en Laboratorio</h1>
+        <div id="menu">
+            <button onclick="mostrarHorarios()">Ver horarios disponibles</button>
+            <button onclick="agregarTurno()">Agendar un turno</button>
+            <button onclick="cancelarTurno()">Cancelar un turno</button>
+            <button onclick="mostrarTurnos()">Ver los turnos dados</button>
+            <button onclick="salir()">Salir</button>
         </div>
+        <div id="output"></div>
+
     </main>
     <footer>
         <section class="contacto">
@@ -88,6 +81,7 @@
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js" integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script>
-    <script src="../script.js"></script>
+    <script src="../js/verificar.js"></script>
+    <script src="../js/turnos.js"></script>
 </body>
 </html>
